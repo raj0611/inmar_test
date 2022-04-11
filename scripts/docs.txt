@@ -1,0 +1,108 @@
+
+[
+    ("Perimeter","Bakery","Bakery Bread","Bagels"),
+    ("Perimeter","Bakery","Bakery Bread","Baking or Breading Products"),
+    ("Perimeter","Bakery","Bakery Bread","English Muffins or Biscuits"),
+    ("Perimeter","Bakery","Bakery Bread","Flatbreads"),
+    ("Perimeter","Bakery","In Store Bakery","Breakfast Cake or Sweet Roll"),
+    ("Perimeter","Bakery","In Store Bakery","Cakes"),
+    ("Perimeter","Bakery","In Store Bakery","Pies"),
+    ("Perimeter","Bakery","In Store Bakery","Seasonal"),
+    ("Center","Dairy","Cheese","Cheese Sauce"),
+    ("Center","Dairy","Cheese","Specialty Cheese"),
+    ("Center","Dairy","Cream or Creamer","Dairy Alternative Creamer"),
+    ("Center","Frozen","Frozen Bake","Bread or Dough Products Frozen"),
+    ("Center","Frozen","Frozen Bake","Breakfast Cake or Sweet Roll Frozen")
+]
+
+
+
+---http://127.0.0.1:8000/emp/  myapi.views.emp_list [ EMP ]
+
+-----------------------     list        -----------------------
+get http://127.0.0.8000/emp/
+
+[Empty list]
+
+-----------------------     creating        -----------------------
+post http://127.0.0.8000/emp/
+
+{
+    "location": "Center",
+    "department": "Frozen",
+    "category": "Frozen Bake",
+    "subcategory": "Bread or Dough Products Frozen"
+}
+
+
+
+
+---http://127.0.0.1:8000/emp/<int:pk>/ org.views.emp_detail
+-----------------------     list        -----------------------
+
+get http://127.0.0.8000/emp/
+
+
+[
+    {
+        "id": 1,
+        "location": "aa",
+        "department": "bb",
+        "category": "cc",
+        "subcategory": "dd"
+    },
+    {
+        "id": 2,
+        "location": "Center",
+        "department": "Frozen",
+        "category": "Frozen Bake",
+        "subcategory": "Breakfast Cake or Sweet Roll Frozen"
+    }
+]
+-----------------------     pk      -----------------------
+get http://127.0.0.8000/emp/<int:pk>/1/
+
+    {
+        "id": 1,
+        "location": "aa",
+        "department": "bb",
+        "category": "cc",
+        "subcategory": "dd"
+    }
+
+-----------------------      Update      -----------------------
+put http://127.0.0.8000/emp/<int:pk>/1/
+
+    {
+        "id": 3,
+        "location": "Center",
+        "department": "Frozen",
+        "category": "Frozen Bake",
+        "subcategory": "Breakfast Cake or Sweet Roll Frozen"
+    }
+
+-----------------------            Delete       -----------------------
+delete http://127.0.0.8000/emp/<int:pk>/1/
+
+{
+    "id": 1,
+    "name": "dev",
+    "desc": "develop",
+    "head": null,
+    "email": "develop@test.com",
+    "ph_no": "9966332211",
+    "ph_type": "landline",
+    "ph_no2": "1122336699"
+}
+
+-----------------------     create/update if any Errors     -----------------------
+post http://127.0.0.8000/emp/
+
+{
+    "name": [
+        "This field is required."
+    ],
+    "ph_type": [
+        "This field is required."
+    ]
+}
